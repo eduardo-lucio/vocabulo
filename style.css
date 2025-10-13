@@ -1,0 +1,48 @@
+:root{
+    --color1: #02031a;
+    --color2: #021b2b;
+    --color3: #b10c43;
+    --color4: #ff0841;
+    --color5: #ebdfcc;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    background-color: var(--color1);
+    height: 100vh;
+}
+main{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    width: 520px;
+    margin: auto;
+
+}
+
+main > div{
+    display: flex;
+    height: 45px;
+}
+input[type="text"]{
+    margin-right: 5px;
+    box-sizing: border-box;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 2px;
+    border: 2px solid var(--color3);
+
+}
+
+input[type="text"]:focus{
+
+    caret-color: transparent;
+    outline: none;
+    border-bottom: 5px solid var(--color3);
+}
