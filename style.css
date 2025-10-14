@@ -25,9 +25,25 @@ main{
 
 }
 
+h1{
+    padding: 10px 0;
+    text-align: center;
+}
+.correct{
+    background-color: green;
+}
+.almost{
+    background-color: yellow;
+}
+.wrong{
+    background-color: #222128;
+}
 main > div{
     display: flex;
     height: 45px;
+}
+input:disabled{
+    color: white;
 }
 input[type="text"]{
     margin-right: 5px;
@@ -37,7 +53,6 @@ input[type="text"]{
     margin-top: 5px;
     border-radius: 2px;
     border: 2px solid var(--color3);
-
 }
 
 input[type="text"]:focus{
