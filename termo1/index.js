@@ -2,35 +2,20 @@ let body = document.querySelector('body')
 let gameState = 'Ingame'
 let word = []
 
-let isWordLoaded = false
-let wordPromise = loadWord().then((palavraFinal) => {
-    word = palavraFinal.toUpperCase().split('')
-    isWordLoaded = true
-})
 
-let checkPromise = setInterval(() => {
-    if(!isWordLoaded){
-        console.log('carregando')
-    }else {
-        console.log('carregou')
-        clearInterval(checkPromise)
-    }
-}, 500)
-async function loadWord (){
-    let palavra = "";
-    try{
-        palavra = await fetch('https://api.dicionario-aberto.net/random')
-        let palavra1 = await palavra.json()
-        let palavra2 = palavra1.word.toUpperCase()
-        palavra2 = palavra2.split('')
-        if(palavra2.length !== 6){
-            return loadWord()
-        }
-        return await palavra1.word
-    }catch(error){
-        console.log(error)
-    }
+
+
+async function loadWord1(){
+    let wordFetch = await fetch('palavras6.txt')
+    let wordText = await wordFetch.text()
+    let finalWord = wordText.split('\n')
+
+    let randomWord = finalWord[Math.floor(Math.random() * finalWord.length)]
+    word = randomWord.toUpperCase().split('')
+
+    console.log(randomWord)
 }
+loadWord1()
 
 let wordMap = new Map()
 function verifyGreen(atualBox, index){
