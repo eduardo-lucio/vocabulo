@@ -7,9 +7,18 @@
 </head>
 <body>
 <header>
-    <h1>vocabulo</h1>
+    <h1>Vocábulo</h1>
+    <h2>Modo: seis letras</h2>
 </header>
 <main>
+    <p id="message"></p>
+    <section>
+        <div>
+            <button>4 letras</button>
+            <button>5 letras</button>
+            <button>6 letras</button>
+        </div>
+    </section>
     <div>
         <div class="current editing"></div>
         <div class="current"></div>
@@ -67,6 +76,19 @@
         <div class="disabled"></div>
     </div>
 </main>
-<script src="index.js"></script>
+<footer>
+    <div id="background"></div>
+    <div id="win">
+        <h2>Você ganhou!</h2>
+        <p>parabens macaco</p>
+        <button>Jogar novamente</button>
+    </div>
+    <div id="lose">
+        <h2>Você perdeu</h2>
+        <p>A palavra era ${}</p>
+        <button>Jogar novamente</button>
+    </div>
+</footer>
+<script type="module" src="index.js"></script>
 </body>
 </html>
