@@ -1,11 +1,10 @@
-async function loadWord1(){
-    let wordFetch = await fetch('palavras6.txt')
+async function loadWord1(palavra){
+
+    let wordFetch = await fetch(palavra)
     let wordText = await wordFetch.text()
     let finalWord = wordText.split('\n')
     let randomWord = finalWord[Math.floor(Math.random() * finalWord.length)]
     word = randomWord.toUpperCase().split('')
-    word.pop()
-    console.log(randomWord)
 }
 
 function verifyGreen(atualBox, index){
@@ -91,7 +90,7 @@ function changeRow(){
     currentRow.querySelectorAll('.current').forEach(box => {
         box.classList.remove('current')
     })
-
+    console.log(nextRow)
     if(!nextRow){
         let bg = document.querySelector('#background')
         let loseDiv = document.querySelector('#lose')

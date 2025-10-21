@@ -1,8 +1,13 @@
 import {loadWord1, verificar, gameState} from './gameEngine.js'
 
 let body = document.querySelector('body')
-
-loadWord1()
+if(document.title === '4 letter mode'){
+    loadWord1('./palavras4.txt')
+}else if(document.title === '5 letter mode'){
+    loadWord1('./palavras5.txt')
+}else if(document.title === '6 letter mode'){
+    loadWord1('./palavras6.txt')
+}
 
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
@@ -30,5 +35,15 @@ body.addEventListener('keyup',(tecla)=>{
         }
     }else if(teclaP === 'Enter'){
         verificar()
+    }else if(teclaP === 'ArrowLeft'){
+        if(previousBox !== null){
+            currentBox.classList.remove('editing')
+            previousBox.classList.add('editing')
+        }
+    }else if(teclaP === 'ArrowRight'){
+        if(nextBox !== null){
+            currentBox.classList.remove('editing')
+            nextBox.classList.add('editing')
+        }
     }
 })

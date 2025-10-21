@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>vocabulo</title>
+    <title>6 letter mode</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,9 +14,9 @@
     <p id="message"></p>
     <section>
         <div>
-            <button>4 letras</button>
-            <button>5 letras</button>
-            <button>6 letras</button>
+            <button><a href="4letter.html">4 letras</a></button>
+            <button><a href="5letter.html">5 letras</a></button>
+            <button><a href="6letter.html">6 letras</a></button>
         </div>
     </section>
     <div>
@@ -75,18 +75,26 @@
         <div class="disabled"></div>
         <div class="disabled"></div>
     </div>
+    <div>
+        <div class="disabled"></div>
+        <div class="disabled"></div>
+        <div class="disabled"></div>
+        <div class="disabled"></div>
+        <div class="disabled"></div>
+        <div class="disabled"></div>
+    </div>
 </main>
 <footer>
     <div id="background"></div>
     <div id="win">
         <h2>Você ganhou!</h2>
-        <p>parabens macaco</p>
-        <button>Jogar novamente</button>
+        <p>Parabens!</p>
+        <button class="playAgain">Jogar novamente</button>
     </div>
     <div id="lose">
         <h2>Você perdeu</h2>
         <p>A palavra era ${}</p>
-        <button>Jogar novamente</button>
+        <button class="playAgain">Jogar novamente</button>
     </div>
 </footer>
 <script type="module" src="index.js"></script>
