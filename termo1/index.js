@@ -22,25 +22,22 @@ document.addEventListener('click', () => hiddenInput.focus())
 
 hiddenInput.addEventListener('input', (e) => {
     let letra = e.target.value.toUpperCase().replace(/[^A-Z]/g,'') // só letras
-    e.target.value = letra
+    if(!letra) return // se não digitou nada válido, sai
+    e.target.value = ''  // limpa o input imediatamente
 
     let currentBox = document.querySelector('.editing')
     if(!currentBox) return
 
     currentBox.innerHTML = letra
 
+    // move para próxima caixa
     let nextBox = currentBox.nextElementSibling
     if(nextBox) {
         currentBox.classList.remove('editing')
         nextBox.classList.add('editing')
     }
-
-    const currentBoxes = document.querySelectorAll('.current')
-    if(Array.from(currentBoxes).every(box => box.innerHTML !== "")){
-        verificar(archive)
-        hiddenInput.value = ""
-    }
 })
+
 
 hiddenInput.addEventListener('keydown', (e) => {
     if(e.key === 'Backspace'){
