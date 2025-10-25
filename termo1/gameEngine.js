@@ -24,6 +24,7 @@ function verifyGreen(atualBox, index){
             wordMap.delete(atualBox.innerHTML)
         }
     }
+    console.log(atualBox)
 }
 
 function verifyYellow(atualBox){
@@ -64,15 +65,15 @@ async function verificar(archive){
     if(!(await verificarPalavra(archive, inputWord))){
         msg.innerHTML = "Palavra inválida"
     }else if(inputWord === word.join('')){
-            currentBoxes.forEach((box, index)=>{
-                verifyGreen(box, index)
-            })
             let bg = document.querySelector('#background')
             let winDiv = document.querySelector('#win')
             winDiv.style.display = 'block'
             bg.style.display = 'block'
             gameState = 'Win'
     }else {
+            currentBoxes.forEach((box, index)=>{
+                verifyGreen(box, index)
+            })
             currentBoxes.forEach((box) => {
                 verifyYellow(box)
                 if (box.classList.contains('editing')) {
