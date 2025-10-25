@@ -39,7 +39,26 @@ hiddenInput.addEventListener('input', (e) => {
 })
 
 
+hiddenInput.addEventListener('keydown', (e) => {
+    e.preventDefault()
+    if(e.key === 'Backspace'){
+        let currentBox = document.querySelector('.editing')
+        if(!currentBox) return
 
+        if(currentBox.innerHTML !== ""){
+            currentBox.innerHTML = ""
+        } else {
+            let previousBox = currentBox.previousElementSibling
+            if(previousBox){
+                currentBox.classList.remove('editing')
+                previousBox.classList.add('editing')
+                previousBox.innerHTML = ""
+            }
+        }
+    } else if(e.key === 'Enter'){
+        verificar(archive)
+    }
+})
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
     let teclaP = tecla.key
