@@ -2,6 +2,7 @@ import {loadWord1, verificar, gameState} from './gameEngine.js'
 
 let body = document.querySelector('body')
 let archive = ''
+let playAgainButton = document.querySelectorAll('.playAgain')
 if(document.title === '4 letter mode'){
     archive = './palavras4.txt'
 }else if(document.title === '5 letter mode'){
@@ -11,7 +12,11 @@ if(document.title === '4 letter mode'){
 }
 await loadWord1(archive)
 console.log(`${archive}`)
-
+playAgainButton.forEach((botao)=>{
+    botao.addEventListener('click', () => {
+        location.reload()
+    })
+})
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
     let teclaP = tecla.key

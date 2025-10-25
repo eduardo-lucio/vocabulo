@@ -9,7 +9,7 @@
 :root{
     --color1: #191919;
     --color2: #252525;
-    --color3: #F47067;
+    --color3: #992E2E;
     --color4: #96D0FF;
     --color5: #ebdfcc;
 }
@@ -42,6 +42,7 @@ section > div > button{
     font-size: 1.2em;
 }
 section > div > button:hover{
+    cursor: pointer;
     border: 1px solid var(--color4);
 }
 header{
@@ -97,6 +98,7 @@ main > div > div{
     margin-top: 5px;
     border-radius: 2px;
     width: 50px;
+    transition: background-color .8s ease-out;
 }
 .disabled{
     background-color: var(--color2);
@@ -110,11 +112,16 @@ main > div > div{
 
 .editing{
     border-bottom: 5px solid var(--color3);
+    transition: 0s;
 }
 #lose{
+    color: white;
+    background-color: var(--color3);
     display: none;
 }
 #win{
+    background-color: #346F44;
+    color: white;
     display: none;
 }
 footer > div{
@@ -127,7 +134,7 @@ footer > div{
     top: 50%;
     left: 50%;
     padding: 20px;
-    border-radius: 40px;
+    border-radius: 30px;
 }
 footer > div > h2{
     font-size: 50px;
@@ -137,8 +144,15 @@ footer > div > p{
     font-size: 30px
 }
 footer > div > button{
+    border: none;
+    padding: 3px;
     font-size: 20px;
     width: 100%;
+    transition: .5s;
+}
+footer > div > button:hover{
+    cursor: pointer;
+    border-radius: 30px;
 }
 a{
     text-decoration: none;

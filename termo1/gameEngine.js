@@ -58,19 +58,25 @@ async function verificar(archive){
         msg.innerHTML = `Digite ${word.length} letras`
         return
     }
-    msg.innerHTML = ''
     currentBoxes.forEach((box, index)=>{
         inputWord += box.innerHTML
     })
     if(!(await verificarPalavra(archive, inputWord))){
         msg.innerHTML = "Palavra inválida"
     }else if(inputWord === word.join('')){
+            msg.innerHTML = ''
+        currentBoxes.forEach((box, index)=>{
+            verifyGreen(box, index)
+        })
+        setTimeout(()=>{
             let bg = document.querySelector('#background')
             let winDiv = document.querySelector('#win')
             winDiv.style.display = 'block'
             bg.style.display = 'block'
             gameState = 'Win'
+        }, 1000)
     }else {
+            msg.innerHTML = ''
             currentBoxes.forEach((box, index)=>{
                 verifyGreen(box, index)
             })
@@ -95,13 +101,15 @@ function changeRow(){
         box.classList.remove('current')
     })
     if(!nextRow){
-        let bg = document.querySelector('#background')
-        let loseDiv = document.querySelector('#lose')
-        let loseMessage = document.querySelector('#lose > p')
-        loseMessage.innerHTML = `A palavra era ${word.join('').toLowerCase()}!`
-        loseDiv.style.display = 'block'
-        bg.style.display = 'block'
-        gameState = 'Lose'
+        setTimeout(()=>{
+            let bg = document.querySelector('#background')
+            let loseDiv = document.querySelector('#lose')
+            let loseMessage = document.querySelector('#lose > p')
+            loseMessage.innerHTML = `A palavra era ${word.join('').toLowerCase()}!`
+            loseDiv.style.display = 'block'
+            bg.style.display = 'block'
+            gameState = 'Lose'
+        }, 1000)
         return
     }
 
