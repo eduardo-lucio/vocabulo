@@ -61,6 +61,7 @@ hiddenInput.addEventListener('keydown', (e) => {
 })
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
+    if(tecla.target.tagName === 'INPUT') return
     let teclaP = tecla.key
     let currentBox = document.querySelector('.editing')
     if (!currentBox) return;
