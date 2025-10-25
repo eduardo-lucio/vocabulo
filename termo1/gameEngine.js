@@ -88,10 +88,6 @@ function changeRow(){
     if(!currentBox) return
 
     let currentRow = currentBox.parentElement
-    if (!document.querySelector('.editing')) {
-        let currentRow = document.querySelector('.current')
-        if (currentRow) currentRow.firstElementChild.classList.add('editing')
-    }
     let nextRow = currentRow.nextElementSibling
 
     currentRow.querySelectorAll('.current').forEach(box => {
