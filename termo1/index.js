@@ -29,8 +29,6 @@ body.addEventListener('keyup',(tecla)=>{
             }
     }else if(teclaP === 'Backspace'){
         if(currentBox.innerHTML !== "" && previousBox !== null){
-            currentBox.classList.remove('editing')
-            previousBox.classList.add('editing')
             currentBox.innerHTML = ""
         }else if (currentBox.innerHTML === "" && previousBox !== null){
             currentBox.classList.remove('editing')
