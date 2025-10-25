@@ -1,5 +1,5 @@
 import {loadWord1, verificar, gameState} from './gameEngine.js'
-let hiddenInput = document.querySelector('#hiddenInput')
+let hiddenInput = document.getElementById('hiddenInput')
 let body = document.querySelector('body')
 let archive = ''
 let playAgainButton = document.querySelectorAll('.playAgain')
