@@ -1,5 +1,5 @@
 import {loadWord1, verificar, gameState} from './gameEngine.js'
-
+let hiddenInput = document.querySelector('.hiddenInput')
 let body = document.querySelector('body')
 let archive = ''
 let playAgainButton = document.querySelectorAll('.playAgain')
@@ -16,6 +16,50 @@ playAgainButton.forEach((botao)=>{
     botao.addEventListener('click', () => {
         location.reload()
     })
+})
+document.addEventListener('touchstart', () => hiddenInput.focus())
+document.addEventListener('click', () => hiddenInput.focus())
+
+hiddenInput.addEventListener('input', (e) => {
+    let letra = e.target.value.toUpperCase().replace(/[^A-Z]/g,'') // só letras
+    e.target.value = letra
+
+    let currentBox = document.querySelector('.editing')
+    if(!currentBox) return
+
+    currentBox.innerHTML = letra
+
+    let nextBox = currentBox.nextElementSibling
+    if(nextBox) {
+        currentBox.classList.remove('editing')
+        nextBox.classList.add('editing')
+    }
+
+    const currentBoxes = document.querySelectorAll('.current')
+    if(Array.from(currentBoxes).every(box => box.innerHTML !== "")){
+        verificar(archive)
+        hiddenInput.value = ""
+    }
+})
+
+hiddenInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Backspace'){
+        let currentBox = document.querySelector('.editing')
+        if(!currentBox) return
+
+        if(currentBox.innerHTML !== ""){
+            currentBox.innerHTML = ""
+        } else {
+            let previousBox = currentBox.previousElementSibling
+            if(previousBox){
+                currentBox.classList.remove('editing')
+                previousBox.classList.add('editing')
+                previousBox.innerHTML = ""
+            }
+        }
+    } else if(e.key === 'Enter'){
+        verificar(archive)
+    }
 })
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
