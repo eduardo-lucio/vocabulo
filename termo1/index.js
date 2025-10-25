@@ -1,19 +1,24 @@
 import {loadWord1, verificar, gameState} from './gameEngine.js'
 
 let body = document.querySelector('body')
+let archive = ''
 if(document.title === '4 letter mode'){
-    loadWord1('./palavras4.txt')
+    archive = './palavras4.txt'
 }else if(document.title === '5 letter mode'){
-    loadWord1('./palavras5.txt')
+    archive = './palavras5.txt'
 }else if(document.title === '6 letter mode'){
-    loadWord1('./palavras6.txt')
+    archive = './palavras6.txt'
 }
+await loadWord1(archive)
+console.log(`${archive}`)
 
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
     let teclaP = tecla.key
     let currentBox = document.querySelector('.editing')
     if (!currentBox) return;
+
+
     let nextBox = currentBox.nextElementSibling
     let previousBox = currentBox.previousElementSibling
     if (/^[a-zA-Z]$/.test(teclaP)){
@@ -34,7 +39,7 @@ body.addEventListener('keyup',(tecla)=>{
             currentBox.innerHTML = ""
         }
     }else if(teclaP === 'Enter'){
-        verificar()
+        verificar(archive)
     }else if(teclaP === 'ArrowLeft'){
         if(previousBox !== null){
             currentBox.classList.remove('editing')

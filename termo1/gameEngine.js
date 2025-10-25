@@ -1,12 +1,17 @@
 async function loadWord1(palavra){
-
     let wordFetch = await fetch(palavra)
     let wordText = await wordFetch.text()
     let finalWord = wordText.split('\n')
     let randomWord = finalWord[Math.floor(Math.random() * finalWord.length)]
-    word = randomWord.toUpperCase().split('')
+    word = randomWord.trim().toUpperCase().split('')
+    console.log(word)
 }
-
+async function verificarPalavra(palavra, inputWord){
+    let wordFetch = await fetch(palavra)
+    let wordText = (await wordFetch.text()).toUpperCase()
+    let finalWord = wordText.split('\n').map(w => w.trim().toUpperCase())
+    return finalWord.includes(inputWord.toUpperCase())
+}
 function verifyGreen(atualBox, index){
     if(atualBox.innerHTML === word[index] && wordMap.has(atualBox.innerHTML)){
         atualBox.classList.add('correct')
@@ -35,7 +40,7 @@ function verifyYellow(atualBox){
 let gameState = 'Ingame'
 let word = []
 let wordMap = new Map()
-async function verificar(){
+async function verificar(archive){
     wordMap.clear()
     word.forEach((atual) => {
         if(wordMap.has(atual)){
@@ -53,28 +58,29 @@ async function verificar(){
         return
     }
     msg.innerHTML = ''
-
     currentBoxes.forEach((box, index)=>{
-        verifyGreen(box, index)
         inputWord += box.innerHTML
     })
-
-    if(inputWord === word.join('')){
-        let bg = document.querySelector('#background')
-        let winDiv = document.querySelector('#win')
-        winDiv.style.display = 'block'
-        bg.style.display = 'block'
-        gameState = 'Win'
+    if(!(await verificarPalavra(archive, inputWord))){
+        msg.innerHTML = "Palavra inválida"
+    }else if(inputWord === word.join('')){
+            currentBoxes.forEach((box, index)=>{
+                verifyGreen(box, index)
+            })
+            let bg = document.querySelector('#background')
+            let winDiv = document.querySelector('#win')
+            winDiv.style.display = 'block'
+            bg.style.display = 'block'
+            gameState = 'Win'
     }else {
-        currentBoxes.forEach((box) => {
-            verifyYellow(box)
-            box.classList.add('disabled')
-            if (box.classList.contains('editing')) {
-                box.classList.remove('editing')
-            }
-        })
-        changeRow()
-    }
+            currentBoxes.forEach((box) => {
+                verifyYellow(box)
+                if (box.classList.contains('editing')) {
+                    box.classList.remove('editing')
+                }
+            })
+            changeRow()
+        }
 }
 
 function changeRow(){
@@ -82,15 +88,15 @@ function changeRow(){
     if(!currentBox) return
 
     let currentRow = currentBox.parentElement
-    if(!currentRow){
-
+    if (!document.querySelector('.editing')) {
+        let currentRow = document.querySelector('.current')
+        if (currentRow) currentRow.firstElementChild.classList.add('editing')
     }
     let nextRow = currentRow.nextElementSibling
 
     currentRow.querySelectorAll('.current').forEach(box => {
         box.classList.remove('current')
     })
-    console.log(nextRow)
     if(!nextRow){
         let bg = document.querySelector('#background')
         let loseDiv = document.querySelector('#lose')

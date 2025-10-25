@@ -7,10 +7,10 @@
             font-style: normal;
         }
 :root{
-    --color1: #02031a;
-    --color2: #021b2b;
-    --color3: #b10c43;
-    --color4: #ff0841;
+    --color1: #191919;
+    --color2: #252525;
+    --color3: #F47067;
+    --color4: #96D0FF;
     --color5: #ebdfcc;
 }
 
@@ -34,10 +34,15 @@ section > div{
     flex-flow: column nowrap;
 }
 section > div > button{
+    background-color: var(--color2);
+    border: 0;
     border-radius: 10px;
     margin: 5px;
     padding: 10px;
     font-size: 1.2em;
+}
+section > div > button:hover{
+    border: 1px solid var(--color4);
 }
 header{
     color: white;
@@ -66,12 +71,14 @@ h1{
 }
 .correct{
     background-color: green;
-    color: red;
+    color: white;
 }
 .almost{
-    background-color: yellow;
+    color: white;
+    background-color: #D3AD69;
 }
 .wrong{
+    color: white;
     background-color: #222128;
 }
 main > div{
@@ -85,16 +92,17 @@ main > div > div{
     margin-right: 5px;
     box-sizing: border-box;
     font-size: 30px;
+    font-weight: 500;
     text-align: center;
     margin-top: 5px;
     border-radius: 2px;
-    border: 2px solid var(--color3);
     width: 50px;
 }
 .disabled{
-    color: white;
+    background-color: var(--color2);
 }
 .current{
+    border: 2px solid var(--color3);
     background-color: white;
     color: black;
     user-select: none;
@@ -131,6 +139,10 @@ footer > div > p{
 footer > div > button{
     font-size: 20px;
     width: 100%;
+}
+a{
+    text-decoration: none;
+    color: white;
 }
 #background{
     z-index: 1;
