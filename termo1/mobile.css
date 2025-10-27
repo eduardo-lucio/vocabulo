@@ -14,3 +14,7 @@ main > div > div{
 section > div > button{
     font-size: 3em;
 }
+section > div{
+     transform: translate(-80%, -50%);
+     left: 0;
+ }
