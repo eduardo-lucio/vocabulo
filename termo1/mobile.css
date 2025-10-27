@@ -1,0 +1,16 @@
+h1{
+    font-size: 5em;
+}
+header{
+    font-size: 20px;
+}
+main > div{
+    height: 70px;
+}
+main > div > div{
+    margin-top: 10px;
+    width: 60px;
+}
+section > div > button{
+    font-size: 3em;
+}
