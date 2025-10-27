@@ -22,15 +22,14 @@ document.addEventListener('click', () => hiddenInput.focus())
 
 hiddenInput.addEventListener('input', (e) => {
     let letra = e.target.value.toUpperCase().replace(/[^A-Z]/g,'') // só letras
-    if(!letra) return // se não digitou nada válido, sai
-    e.target.value = ''  // limpa o input imediatamente
+    if(!letra) return
+    e.target.value = ''
 
     let currentBox = document.querySelector('.editing')
     if(!currentBox) return
 
     currentBox.innerHTML = letra
 
-    // move para próxima caixa
     let nextBox = currentBox.nextElementSibling
     if(nextBox) {
         currentBox.classList.remove('editing')
@@ -41,6 +40,7 @@ hiddenInput.addEventListener('input', (e) => {
 body.addEventListener('keyup',(tecla)=>{
     if(gameState !== 'Ingame') return
     let teclaP = tecla.key
+    if(tecla.target !== body && (/^[a-zA-Z]$/.test(teclaP))) return
     let currentBox = document.querySelector('.editing')
     if (!currentBox) return;
 
